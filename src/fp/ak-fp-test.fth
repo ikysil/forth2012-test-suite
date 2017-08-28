@@ -128,18 +128,26 @@ T{ -2. d>f -3. d>f -2. d>f 5. d>f f/ f~ -> true }T
 \ ------------------------------------------------------------------------
 TESTING MEMORY ACCESS, FLITERAL, FCONSTANT, FVARIABLE
 
-VARIABLE FMEM 2 CELLS ALLOT
+VARIABLE FMEM 1 FLOATS 2 CELLS MAX ALLOT
 
 T{ 1. d>f fmem f! -> }T
 T{ fmem f@ f>d -> 1. }T
 
+[DEFINED] SF!
+[DEFINED] SF@
+AND [IF]
 FMEM 2 CELLS ERASE
 T{ -2. d>f fmem sf! -> }T
 T{ fmem sf@ f>d -> -2. }T
 T{ fmem cell+ @ -> 0 }T
+[THEN]
 
+[DEFINED] DF!
+[DEFINED] DF@
+AND [IF]
 T{ 3. d>f fmem df! -> }T
 T{ fmem df@ f>d -> 3. }T
+[THEN]
 
 : FT1 [ -2. d>f ] fliteral ;
 T{ ft1 f>d -> -2. }T
@@ -202,8 +210,12 @@ T{ dfalign here dfalign here = -> true }T
 T{ sfalign here sfalign here = -> true }T
 [THEN]
 T{ 0  floats -> 0 }T
+[DEFINED] SFLOATS [IF]
 T{ 0 sfloats -> 0 }T
+[THEN]
+[DEFINED] DFLOATS [IF]
 T{ 0 dfloats -> 0 }T
+[THEN]
 
 \ ------------------------------------------------------------------------
 TESTING NUMBER INPUT
