@@ -263,8 +263,11 @@ T{ -10E-1 f>d -> -1. }T
 TESTING FRACTIONAL ARITHMETICS
 DECIMAL
 
+
+[UNDEFINED] F= [IF]
 : F=    ( r1 r2 -- flag, true if exact identitiy )
   0E f~ ;
+[THEN]
 
 : TF=   ( r1 r2 -- flag, true if abs. error < 0.00005 )
   0.00005E f~ ;
